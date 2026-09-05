@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学単位シミュレーター</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>大学単位シミュレーター</h1>
+
+    <div class="rules">
+        <h2>ルール説明</h2>
+
+        <p>大学生活を送り、必要な単位を集めて卒業を目指します。</p>
+
+        <ul>
+            <li>大学生活を送り、必要な単位を集めて卒業を目指します。</li>
+            <li>卒業には128単位が必要です。</li>
+            <li>授業を履修すると単位を取得できます。</li>
+            <li>授業にはそれぞれ基本消費スタミナが設定されています。</li>
+            <li>履修科目数に上限はありません。スタミナが実質的な履修上限になります。</li>
+            <li>同じ日の授業が5コマ連続すると、その授業のスタミナ消費が1.5倍になります。</li>
+            <li>その日に1コマしか授業を履修しない場合、その日のスタミナを30追加消費します。</li>
+            <li>同じ日の授業の間に空きコマがある場合、空きコマ1個につきスタミナを30追加消費します。</li>
+            <li>1・5限の授業は、連続コマ数にかかわらずスタミナ消費が1.5倍になります。</li>
+            <li>連続コマ補正と1限・5限補正は重複して適用されます。</li>
+            <li>スタミナは学期終了時に50回復します。</li>
+            <li>スタミナが足りない履修を組むことはできません。</li>
+            <li>1年生終了時には無条件で2年生へ進級します。</li>
+            <li>2年生後期終了時に累計50単位以上あれば3年生へ進級します。</li>
+            <li>50単位未満の場合は2年生を留年します。</li>
+            <li>3年生終了時には条件なしで4年生へ進級します。</li>
+            <li>4年生後期終了時に128単位以上あれば卒業です。</li>
+            <li>卒業できなかった場合は4年生を留年します。</li>
+            <li>留年中は授業によるスタミナ消費が2倍になります。</li>
+            <li>通年科目は年度を通して前期・後期の同じ曜日・時限に配置されます。</li>
+            <li>通年科目の履修は前期にのみ開始でき、前期に履修した科目は後期も自動的に履修します。</li>
+        </ul>
+    </div>
+
+
+    <div class="status">
+
+        <p>
+            現在：
+            <span id="semester">1年生・前期</span>
+        </p>
+
+        <p>
+            卒業必要単位：
+            <span id="requiredCredits">128</span>単位
+        </p>
+
+        <p>
+            取得単位：
+            <span id="currentCredits">0</span>単位
+        </p>
+
+        <p>
+            残り単位：
+            <span id="remainingCredits">128</span>単位
+        </p>
+
+        <p>
+            スタミナ：
+            <span id="stamina">950/950</span>
+        </p>
+
+    </div>
+
+
+    <h2>今学期の時間割</h2>
+
+    <table id="timetable">
+
+        <thead>
+            <tr>
+                <th>時限</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <th>1限</th>
+                <td data-day="月" data-period="1"></td>
+                <td data-day="火" data-period="1"></td>
+                <td data-day="水" data-period="1"></td>
+                <td data-day="木" data-period="1"></td>
+                <td data-day="金" data-period="1"></td>
+            </tr>
+
+            <tr>
+                <th>2限</th>
+                <td data-day="月" data-period="2"></td>
+                <td data-day="火" data-period="2"></td>
+                <td data-day="水" data-period="2"></td>
+                <td data-day="木" data-period="2"></td>
+                <td data-day="金" data-period="2"></td>
+            </tr>
+
+            <tr>
+                <th>3限</th>
+                <td data-day="月" data-period="3"></td>
+                <td data-day="火" data-period="3"></td>
+                <td data-day="水" data-period="3"></td>
+                <td data-day="木" data-period="3"></td>
+                <td data-day="金" data-period="3"></td>
+            </tr>
+
+            <tr>
+                <th>4限</th>
+                <td data-day="月" data-period="4"></td>
+                <td data-day="火" data-period="4"></td>
+                <td data-day="水" data-period="4"></td>
+                <td data-day="木" data-period="4"></td>
+                <td data-day="金" data-period="4"></td>
+            </tr>
+
+            <tr>
+                <th>5限</th>
+                <td data-day="月" data-period="5"></td>
+                <td data-day="火" data-period="5"></td>
+                <td data-day="水" data-period="5"></td>
+                <td data-day="木" data-period="5"></td>
+                <td data-day="金" data-period="5"></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+<div id="timetableStamina">
+    今学期の履修：0単位<br>
+    授業の消費：0<br>
+    空きコマの追加消費：+0<br>
+    合計消費スタミナ：0 / 現在のスタミナ：800
+</div>
+
+<div class="action">
+    <button id="semesterButton">
+        学期を終える
+    </button>
+
+    <button id="dropoutButton">
+        大学を中退する
+    </button>
+
+    <button id="resetButton">
+        ゲームをリセット
+    </button>
+</div>
+
+
+    <p id="message">
+        授業を選択してください。
+    </p>
+
+
+    <script src="courses.js"></script>
+    <script src="timetable.js"></script>
+    <script src="game.js"></script>
+
+</body>
+</html>
