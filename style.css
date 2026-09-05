@@ -1,0 +1,144 @@
+body {
+    font-family: sans-serif;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.8;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+/* ルール説明 */
+
+.rules {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+    background: #fafafa;
+}
+
+.rules h2 {
+    margin-top: 0;
+}
+
+.rules li {
+    margin: 4px 0;
+}
+
+
+/* ステータス */
+
+.status {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.status p {
+    margin: 5px 0;
+}
+
+
+/* 時間割 */
+
+#timetable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#timetable th,
+#timetable td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 10px 5px;
+    height: 55px;
+}
+
+#timetable th {
+    background: #f5f5f5;
+}
+
+#timetable td {
+    cursor: pointer;
+}
+
+#timetable td:hover {
+    background: #f0f0f0;
+}
+
+
+/* 履修中の授業 */
+
+#timetable td.selected {
+    background: #cfe8ff;
+    font-weight: bold;
+}
+
+
+/* 通年科目 */
+
+#timetable td.annual {
+    border-left: 4px solid #888;
+}
+
+
+/* 授業選択欄 */
+
+#courseList {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.course {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.course label {
+    cursor: pointer;
+    display: block;
+}
+
+.course:has(input:checked) {
+    background: #cfe8ff;
+    font-weight: bold;
+}
+
+.course-info {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.annual-label {
+    font-weight: bold;
+}
+
+
+/* ボタン */
+
+.action {
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+button {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+
+/* メッセージ */
+
+#message {
+    font-weight: bold;
+}
+
+.increased-cost {
+    color: red;
+    font-weight: bold;
+}
